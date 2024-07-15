@@ -1,21 +1,24 @@
 <?php
-include "connect.php";
-$id_krisis_energi = (isset($_POST['id_krisis_energi'])) ? htmlentities($_POST['id_krisis_energi']) : "";
-$tanggal_mulai = (isset($_POST['tanggal_mulai'])) ? htmlentities($_POST['tanggal_mulai']) : "";
-$tanggal_selesai = (isset($_POST['tanggal_selesai'])) ? htmlentities($_POST['tanggal_selesai']) : "";
-$penyebab = (isset($_POST['penyebab'])) ? htmlentities($_POST['penyebab']) : "";
-$dampak = (isset($_POST['dampak'])) ? htmlentities($_POST['dampak']) : "";
-$id_sumber_energi = (isset($_POST['id_sumber_energi'])) ? htmlentities($_POST['id_sumber_energi']) : "";
+include "../connect.php";
+$id = (isset($_POST['id'])) ? htmlentities($_POST['id']) : "";
+$negara = (isset($_POST['negara'])) ? htmlentities($_POST['negara']) : "";
+$sumberdaya_utama = (isset($_POST['sumberdaya_utama'])) ? htmlentities($_POST['sumberdaya_utama']) : "";
+$perusahaan_asing = (isset($_POST['perusahaan_asing'])) ? htmlentities($_POST['perusahaan_asing']) : "";
+$tahun_eksploitasi = (isset($_POST['tahun_eksploitasi'])) ? htmlentities($_POST['tahun_eksploitasi']) : "";
 
 if (!empty(isset($_POST['input_krisis_validate']))) {
-    $query = mysqli_query($con, "UPDATE krisis_energi SET tanggal_mulai = '$tanggal_mulai', tanggal_selesai = '$tanggal_selesai', penyebab = '$penyebab', dampak = '$dampak' WHERE id_krisis_energi = '$id_krisis_energi'");
+    $query = mysqli_query($con, "UPDATE sumberdaya SET negara = '$negara', sumberdaya_utama = '$sumberdaya_utama', perusahaan_asing = '$perusahaan_asing', tahun_eksploitasi = '$tahun_eksploitasi' WHERE id = '$id'");
     if ($query) {
-        $massage = '<script>window.location = "KrisisEnergi"; alert("Data Krisis Energi penyebab ' . $penyebab . ' Berhasil Diedit");</script>';
+        $massage = '
+        <script>
+        window.location = "../SumberDaya";
+        alert("Data Sumber Daya ' . $sumberdaya_utama . ' dikelola ' . $perusahaan_asing . ' Berhasil Diedit");
+        </script>';
     } else {
         $massage = '
         <script>
-        window.location = "KrisisEnergi";
-        alert("Data ' . $penyebab . ' Gagal Diedit");
+        window.location = "../SumberDaya";
+        alert("Data Sumber Daya ' . $sumberdaya_utama . ' dikelola ' . $perusahaan_asing . ' Gagal Diedit");
         </scrip>
         ';
     }

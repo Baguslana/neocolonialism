@@ -85,24 +85,24 @@ if (empty($krisis)) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="needs-validation" novalidate action="proses_edit_krisis.php" method="POST">
+                        <form class="needs-validation" novalidate action="controller/proses_edit_krisis.php" method="POST">
                             <input type="hidden" name="id" value="<?= $row['id']; ?>">
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="negara" class="form-control" id="floatingInput" placeholder="Your Name" value="<?= $row['negara']; ?>">
-                                        <label for="floatingInput">Negara</label>
+                                        <input type="text" class="form-control" id="floatingInputNegara" placeholder="Your Name" name="negara" required value="<?= $row['negara']; ?>">
+                                        <label for="floatingInputNegara">Negara</label>
                                         <div class="invalid-feedback">
-                                            Masukan Waktu Mulai.
+                                            Masukan Negara.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm">
                                     <div class="form-floating mb-3">
-                                        <input type="date" name="tanggal_selesai" class="form-control" id="floatingInput" placeholder="Your Name" value="<?= $row['tanggal_selesai']; ?>">
-                                        <label for="floatingInput">Waktu Selesai</label>
+                                        <input type="text" class="form-control" id="floatingInputSumberDayaUtama" placeholder="Your Name" name="sumberdaya_utama" required value="<?= $row['sumberdaya_utama']; ?>">
+                                        <label for="floatingInputSumberDayaUtama">Sumber Daya Utama</label>
                                         <div class="invalid-feedback">
-                                            Masukan Waktu Selesai.
+                                            Masukan Sumber Daya Utama.
                                         </div>
                                     </div>
                                 </div>
@@ -110,30 +110,19 @@ if (empty($krisis)) {
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="penyebab" value="<?= $row['penyebab']; ?>">
-                                        <label for="floatingInput">Penyebab</label>
+                                        <input type="text" class="form-control" id="floatingInputPerusahaanAsing" placeholder="Your Name" name="perusahaan_asing" required value="<?= $row['perusahaan_asing']; ?>">
+                                        <label for=" floatingInputPerusahaanAsing">Perusahaan Asing</label>
                                         <div class="invalid-feedback">
-                                            Masukan Penyebab.
+                                            Masukan Perusahaan Asing.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm">
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" name="id_sumber_energi" aria-label="Default select example" required>
-                                            <option value="" hidden selected>Pilih Sumber Energi</option>
-                                            <?php
-                                            foreach ($querySumber as $value) {
-                                                if ($row['id_sumber_energi'] == $value['id_sumber_energi']) {
-                                                    echo '<option value="' . $value['id_sumber_energi'] . '" selected>' . $value['nama_sumber_energi'] . '</option>';
-                                                } else {
-                                                    echo '<option value="' . $value['id_sumber_energi'] . '">' . $value['nama_sumber_energi'] . '</option>';
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                        <label for="floatingInput">Sumber Energi</label>
+                                        <input type="number" name="tahun_eksploitasi" class="form-control" id="floatingInput" placeholder="Your Name" required value="<?= $row['tahun_eksploitasi']; ?>">
+                                        <label for="floatingInput">Tahun Eksploitasi</label>
                                         <div class="invalid-feedback">
-                                            Pilih Sumber Energi.
+                                            Masukan Tahun Eksploitasi.
                                         </div>
                                     </div>
                                 </div>
@@ -159,11 +148,11 @@ if (empty($krisis)) {
                     </div>
                     <div class="modal-body">
                         <form class="needs-validation" novalidate action="../controller/proses_delete_krisis.php" method="POST">
-                            <input type="" name="id" value="<?= $row['id']; ?>">
+                            <input type="hidden" name="id" value="<?= $row['id']; ?>">
                             <input type="hidden" name="sumberdaya_utama" value="<?= $row['sumberdaya_utama']; ?>">
                             <input type="hidden" name="perusahaan_asing" value="<?= $row['perusahaan_asing']; ?>">
                             <div class="col-lg-12 mb-3">
-                                <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus Data Sumber Daya <b><?= $row['sumberdaya_utama']; ?></b> oleh perusahaan <b><?= $row['perusahaan_asing']; ?></b> ?</div>
+                                <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus Data Sumber Daya <b><?= $row['sumberdaya_utama']; ?></b> dikelola <b><?= $row['perusahaan_asing']; ?></b> ?</div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

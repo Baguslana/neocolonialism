@@ -1,20 +1,25 @@
 <?php
-include "connect.php";
-$id_dampak_krisis = (isset($_POST['id_dampak_krisis'])) ? htmlentities($_POST['id_dampak_krisis']) : "";
-$sektor = (isset($_POST['sektor'])) ? htmlentities($_POST['sektor']) : "";
+include "../connect.php";
+
+$id_ekonomi = (isset($_POST['id_ekonomi'])) ? htmlentities($_POST['id_ekonomi']) : "";
+$nmnegara = (isset($_POST['nmnegara'])) ? htmlentities($_POST['nmnegara']) : "";
+$persentase_gdp = (isset($_POST['persentase_gdp'])) ? htmlentities($_POST['persentase_gdp']) : "";
 
 if (!empty(isset($_POST['input_dampak_validate']))) {
-    $query = mysqli_query($con, "DELETE FROM dampak_krisis WHERE id_dampak_krisis = '$id_dampak_krisis'");
+    $query = mysqli_query($con, "DELETE FROM ekonomi WHERE id_ekonomi = '$id_ekonomi'");
     if ($query) {
-    $massage = '<script>window.location = "DampakKrisis"; alert("Data Dampak Krisis Energi Sektor ' . $sektor . ' Berhasil Dihapus");</script>';
+        $massage = '
+        <script>
+        window.location = "../Ekonomi";
+        alert("Data Ekonomi Negara ' . $nmnegara . ' dengan GDP %' . $persentase_gdp . ' Berhasil Dihapus")
+        ;</script>';
     } else {
         $massage = '
         <script>
-        window.location = "SumberEnergi";
+        window.location = "../Ekonomi";
         alert("Data Gagal Dihapus");
         </scrip>
         ';
     }
 }
 echo $massage;
-?>

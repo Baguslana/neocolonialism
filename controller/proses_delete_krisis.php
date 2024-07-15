@@ -7,7 +7,10 @@ $sumberdaya_utama = (isset($_POST['sumberdaya_utama'])) ? htmlentities($_POST['s
 if (!empty(isset($_POST['input_krisis_validate']))) {
     $query = mysqli_query($con, "DELETE FROM sumberdaya WHERE id = '$id'");
     if ($query) {
-        $massage = '<script>window.location = "../SumberDaya"; alert("Data Sumber Daya ' . $sumberdaya_utama . ' oleh ' . $perusahaan_asing . ' Berhasil Dihapus");</script>';
+        $massage = '
+        <script>window.location = "../SumberDaya"; 
+        alert("Data Sumber Daya ' . $sumberdaya_utama . ' dikelola ' . $perusahaan_asing . ' Berhasil Dihapus");
+        </script>';
     } else {
         $massage = '
         <script>

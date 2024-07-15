@@ -1,5 +1,6 @@
 <?php
 include "../connect.php";
+
 $negara = (isset($_POST['negara'])) ? htmlentities($_POST['negara']) : "";
 $sumberdaya_utama = (isset($_POST['sumberdaya_utama'])) ? htmlentities($_POST['sumberdaya_utama']) : "";
 $perusahaan_asing = (isset($_POST['perusahaan_asing'])) ? htmlentities($_POST['perusahaan_asing']) : "";
@@ -11,7 +12,7 @@ if (!empty(isset($_POST['input_krisis_validate']))) {
         $message = '
         <script>
         window.location = "../SumberDaya";
-        alert("Krisis Energi perusahaan asing ' . $perusahaan_asing . ' sudah terdaftar");
+        alert("Data Sumber daya ' . $sumberdaya_utama . ' dikelola ' . $perusahaan_asing . ' sudah terdaftar");
         </script>
         ';
     } else {
@@ -20,7 +21,7 @@ if (!empty(isset($_POST['input_krisis_validate']))) {
             $message = '
         <script>
         window.location = "../SumberDaya";
-        alert("Berhasil Menambahkan data ' . $sumberdaya_utama . ' oleh ' . $perusahaan_asing . '");
+        alert("Berhasil Menambahkan Data Sumber Daya ' . $sumberdaya_utama . ' dikelola ' . $perusahaan_asing . '");
         </script>
         ';
         } else {
