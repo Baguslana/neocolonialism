@@ -33,10 +33,10 @@ if (empty($view)) {
                     <tr>
                         <th scope="row"><?= $no++ ?></th>
                         <td class="text-nowrap"><?= $row['negara'] ?></td>
-                        <td><?= $row['pendapatan_negara'] ?></td>
+                        <td><?= number_format($row['pendapatan_negara'], 0, ',', '.') ?></td>
                         <td><?= $row['ketergantungan_ekonomi'] ?></td>
                         <td><?= $row['kerusakan_lingkungan'] ?></td>
-                        <td><?= $row['penggusuran_penduduk'] ?></td>
+                        <td><?= number_format($row['penggusuran_penduduk'], 0, ',', '.') ?></td>
                         <td><?= $row['konflik_sosial'] ?></td>
                         <td><?= $row['tingkat_kemiskinan'] ?></td>
                         <td>

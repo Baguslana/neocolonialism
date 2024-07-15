@@ -32,19 +32,19 @@
             <!-- data table -->
             <div class="border-top py-4" id="dataTable">
                 <h3 class="fw-bold">Table Data</h3>
-                <!-- <a aria-current="page" href="SumberEnergi" class="<?php echo (isset($_GET['page']) && $_GET['page'] == 'SumberEnergi') ? 'btn btn-primary btn-sm' : 'text-decoration-none text-primary' ?>">Sumber Energi</a>
-                    <a aria-current="page" href="KrisisEnergi" class="<?php echo (isset($_GET['page']) && $_GET['page'] == 'KrisisEnergi' || !isset($_GET['page'])) ? 'btn btn-primary btn-sm' : 'text-decoration-none text-primary' ?> ms-1">Krisis Energi</a> -->
+                <!-- <a aria-current="page" href="SumberEnergi" class="<?php echo (isset($_GET['page']) && $_GET['page'] == 'SumberDaya') ? 'btn btn-primary btn-sm' : 'text-decoration-none text-primary' ?>">Sumber Energi</a>
+                    <a aria-current="page" href="KrisisEnergi" class="<?php echo (isset($_GET['page']) && $_GET['page'] == 'Ekonomi' || !isset($_GET['page'])) ? 'btn btn-primary btn-sm' : 'text-decoration-none text-primary' ?> ms-1">Krisis Energi</a> -->
                 <div class="card">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] == 'SumberEnergi') ? 'active' : 'text-primary' ?>" aria-current="true" href="SumberEnergi">Sumber Daya</a>
+                                <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] == 'SumberDaya') ? 'active' : 'text-primary' ?>" aria-current="true" href="SumberDaya">Sumber</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] == 'KrisisEnergi') ? 'active' : 'text-primary' ?>" aria-current="true" href="KrisisEnergi">Ekonomi</a>
+                                <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] == 'Ekonomi') ? 'active' : 'text-primary' ?>" aria-current="true" href="Ekonomi">Ekonomi</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] == 'DampakKrisis') ? 'active' : 'text-primary' ?>" aria-current="true" href="DampakKrisis">Sosial Lingkungan</a>
+                                <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] == 'SosialLingkungan') ? 'active' : 'text-primary' ?>" aria-current="true" href="SosialLingkungan">Sosial</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link <?php echo (isset($_GET['page']) && $_GET['page'] == 'ViewKeputusan') ? 'active' : 'text-primary' ?>" aria-current="true" href="ViewKeputusan">View</a>
@@ -58,10 +58,7 @@
 
             </div>
 
-            <div class="border-top py-4" id="rataRata">
-                <h3 class="fw-bold">Data View Keputusan</h3>
-                <?php include 'page/view_keputusan.php'; ?>
-            </div>
+
             <div class="border-top text-center pt-4">
                 <p>© 2023. All Rights Reserved.</p>
             </div>

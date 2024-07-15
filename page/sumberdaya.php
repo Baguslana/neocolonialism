@@ -21,8 +21,8 @@ while ($data = mysqli_fetch_array($query)) {
                     <div class="row">
                         <div class="col-sm">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="penyebab" required>
-                                <label for="floatingInput">Negara</label>
+                                <input type="text" class="form-control" id="floatingInputNegara" placeholder="Your Name" name="negara" required>
+                                <label for="floatingInputNegara">Negara</label>
                                 <div class="invalid-feedback">
                                     Masukan Negara.
                                 </div>
@@ -30,8 +30,8 @@ while ($data = mysqli_fetch_array($query)) {
                         </div>
                         <div class="col-sm">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="penyebab" required>
-                                <label for="floatingInput">Sumber Daya Utama</label>
+                                <input type="text" class="form-control" id="floatingInputSumberDayaUtama" placeholder="Your Name" name="sumberdaya_utama" required>
+                                <label for="floatingInputSumberDayaUtama">Sumber Daya Utama</label>
                                 <div class="invalid-feedback">
                                     Masukan Sumber Daya Utama.
                                 </div>
@@ -41,8 +41,8 @@ while ($data = mysqli_fetch_array($query)) {
                     <div class="row">
                         <div class="col-sm">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="penyebab" required>
-                                <label for="floatingInput">Perusahaan Asing</label>
+                                <input type="text" class="form-control" id="floatingInputPerusahaanAsing" placeholder="Your Name" name="perusahaan_asing" required>
+                                <label for="floatingInputPerusahaanAsing">Perusahaan Asing</label>
                                 <div class="invalid-feedback">
                                     Masukan Perusahaan Asing.
                                 </div>
@@ -50,7 +50,7 @@ while ($data = mysqli_fetch_array($query)) {
                         </div>
                         <div class="col-sm">
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" id="floatingInput" placeholder="Your Name" name="penyebab" required>
+                                <input type="number" name="tahun_eksploitasi" class="form-control" id="floatingInput" placeholder="Your Name" required>
                                 <label for="floatingInput">Tahun Eksploitasi</label>
                                 <div class="invalid-feedback">
                                     Masukan Tahun Eksploitasi.
@@ -69,6 +69,7 @@ while ($data = mysqli_fetch_array($query)) {
 </div>
 <!-- End Modal Add Krisis -->
 
+
 <?php
 if (empty($krisis)) {
     echo "Tidak ada data";
@@ -85,7 +86,7 @@ if (empty($krisis)) {
                     </div>
                     <div class="modal-body">
                         <form class="needs-validation" novalidate action="proses_edit_krisis.php" method="POST">
-                            <input type="hidden" name="id_krisis_energi" value="<?= $row['id_krisis_energi']; ?>">
+                            <input type="hidden" name="id" value="<?= $row['id']; ?>">
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="form-floating mb-3">
@@ -157,11 +158,12 @@ if (empty($krisis)) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="needs-validation" novalidate action="proses_delete_krisis.php" method="POST">
-                            <input type="hidden" name="id_krisis_energi" value="<?= $row['id_krisis_energi']; ?>">
-                            <input type="hidden" name="penyebab" value="<?= $row['penyebab']; ?>">
+                        <form class="needs-validation" novalidate action="../controller/proses_delete_krisis.php" method="POST">
+                            <input type="" name="id" value="<?= $row['id']; ?>">
+                            <input type="hidden" name="sumberdaya_utama" value="<?= $row['sumberdaya_utama']; ?>">
+                            <input type="hidden" name="perusahaan_asing" value="<?= $row['perusahaan_asing']; ?>">
                             <div class="col-lg-12 mb-3">
-                                <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus Data Krisis Energi penyebab <b><?= $row['penyebab']; ?></b> ?</div>
+                                <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus Data Sumber Daya <b><?= $row['sumberdaya_utama']; ?></b> oleh perusahaan <b><?= $row['perusahaan_asing']; ?></b> ?</div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
