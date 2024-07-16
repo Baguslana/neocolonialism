@@ -29,7 +29,7 @@ $queryNegara = mysqli_query($con, "SELECT id, negara FROM sumberdaya");
                         </select>
                         <label for="floatingInput">Dampak Ekonomi</label>
                         <div class="invalid-feedback">
-                            Pilih Sumber Energi.
+                            Pilih Negara.
                         </div>
                     </div>
                     <div class="row">
@@ -64,8 +64,8 @@ $queryNegara = mysqli_query($con, "SELECT id, negara FROM sumberdaya");
                         </div>
                         <div class="col-sm">
                             <div class="form-floating mb-3">
-                                <select class="form-select" name="ketergantungan_ekonomi" aria-label="Default select example">
-                                    <option selected disabled hidden>Ketergantungan Ekonomi</option>
+                                <select class="form-select" name="ketergantungan_ekonomi" aria-label="Default select example" required>
+                                    <option value="" selected disabled hidden>Ketergantungan Ekonomi</option>
                                     <option value="Sangat Tinggi">Sangat Tinggi</option>
                                     <option value="Tinggi">Tinggi</option>
                                     <option value="Sedang">Sedang</option>
@@ -73,6 +73,9 @@ $queryNegara = mysqli_query($con, "SELECT id, negara FROM sumberdaya");
                                     <option value="Sangat Rendah">Sangat Rendah</option>
                                 </select>
                                 <label for="floatingInput">Ketergantungan Ekonomi</label>
+                                <div class="invalid-feedback">
+                                    Pilih Ketergantungan Ekonomi.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -156,12 +159,12 @@ if (empty($krisis)) {
                                 <div class="col-sm">
                                     <div class="form-floating mb-3">
                                         <select class="form-select" name="ketergantungan_ekonomi" aria-label="Default select example">
-                                            <<option selected disabled hidden>Pilih Ketergantungan Ekonomi</option>
-                                                <option value="Sangat Tinggi" <?= ($row['ketergantungan_ekonomi'] == 'Sangat Tinggi') ? 'selected' : ''; ?>>Sangat Tinggi</option>
-                                                <option value="Tinggi" <?= ($row['ketergantungan_ekonomi'] == 'Tinggi') ? 'selected' : ''; ?>>Tinggi</option>
-                                                <option value="Sedang" <?= ($row['ketergantungan_ekonomi'] == 'Sedang') ? 'selected' : ''; ?>>Sedang</option>
-                                                <option value="Rendah" <?= ($row['ketergantungan_ekonomi'] == 'Rendah') ? 'selected' : ''; ?>>Rendah</option>
-                                                <option value="Sangat Rendah" <?= ($row['ketergantungan_ekonomi'] == 'Sangat Rendah') ? 'selected' : ''; ?>>Sangat Rendah</option>
+                                            <option selected disabled hidden>Pilih Ketergantungan Ekonomi</option>
+                                            <option value="Sangat Tinggi" <?= ($row['ketergantungan_ekonomi'] == 'Sangat Tinggi') ? 'selected' : ''; ?>>Sangat Tinggi</option>
+                                            <option value="Tinggi" <?= ($row['ketergantungan_ekonomi'] == 'Tinggi') ? 'selected' : ''; ?>>Tinggi</option>
+                                            <option value="Sedang" <?= ($row['ketergantungan_ekonomi'] == 'Sedang') ? 'selected' : ''; ?>>Sedang</option>
+                                            <option value="Rendah" <?= ($row['ketergantungan_ekonomi'] == 'Rendah') ? 'selected' : ''; ?>>Rendah</option>
+                                            <option value="Sangat Rendah" <?= ($row['ketergantungan_ekonomi'] == 'Sangat Rendah') ? 'selected' : ''; ?>>Sangat Rendah</option>
                                         </select>
                                         <label for="floatingInput">Ketergantungan Ekonomi</label>
                                     </div>
@@ -190,9 +193,10 @@ if (empty($krisis)) {
                         <form class="needs-validation" novalidate action="controller/proses_delete_dampak.php" method="POST">
                             <input type="hidden" name="id_ekonomi" value="<?= $row['id_ekonomi']; ?>">
                             <input type="hidden" name="nmnegara" value="<?= $row['negara']; ?>">
-                            <input type="hidden" name="persentase_gdp" value="<?= $row['persentase_gdp']; ?>">
+                            <input type="hidden" name="penggusuran_penduduk" value="<?= $row['penggusuran_penduduk']; ?>">
+                            <input type="hidden" name="tingkat_kemiskinan" value="<?= $row['tingkat_kemiskinan']; ?>">
                             <div class="col-lg-12 mb-3">
-                                <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus Data Ekonomi Negara <b><?= $row['negara']; ?></b> ?</div>
+                                <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus Data Sosial Lingkungan <b><?= $row['negara']; ?></b> ?</div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

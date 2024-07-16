@@ -1,9 +1,11 @@
 <?php
 include 'connect.php';
-$query = mysqli_query($con, "SELECT * FROM sumber_energi");
+$query = mysqli_query($con, "SELECT * FROM sosiallingkungan LEFT JOIN sumberdaya ON sumberdaya.id = sosiallingkungan.negara_id");
 while ($data = mysqli_fetch_array($query)) {
     $krisis[] = $data;
 }
+
+$queryNegara = mysqli_query($con, "SELECT id, negara FROM sumberdaya");
 ?>
 
 <!-- Modal Add Sumber-->
@@ -11,46 +13,72 @@ while ($data = mysqli_fetch_array($query)) {
     <div class="modal-dialog modal-md modal-dialog-centered modal-fullscreen-sm-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Sumber Energi</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Dampak Sosial Lingkungan</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" novalidate action="proses_input_sumber.php" method="POST">
+                <form class="needs-validation" novalidate action="controller/proses_input_sumber.php" method="POST">
                     <div class="form-floating mb-3">
-                        <input type="text" name="sumber_energi" class="form-control" id="floatingInput" placeholder="Your Name" required>
-                        <label for="floatingInput">Sumber Energi</label>
-                        <div class="invalid-feedback">
-                            Masukan Sumber Energi.
-                        </div>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <select class="form-select" name="jenis_sumber" aria-label="Default select example" required>
-                            <option selected hidden value="">Pilih Jenis Sumber Energi</option>
-                            <option value="Fosil">Fosil</option>
-                            <option value="Terbarukan">Terbarukan</option>
-                            <option value="Non-Terbarukan">Non-Terbarukan</option>
+                        <select class="form-select" name="negaraid" aria-label="Default select example" required>
+                            <option value="" hidden selected>Pilih Negara</option>
+                            <?php
+                            foreach ($queryNegara as $value) {
+                                echo '<option value="' . $value['id'] . '">' . $value['negara'] . '</option>';
+                            }
+                            ?>
                         </select>
-                        <label for="floatingInput">Jenis Sumber Energi</label>
+                        <label for="floatingInput">Dampak Sosial Lingkungan</label>
                         <div class="invalid-feedback">
-                            Masukan Jenis Sumber Energi.
+                            Pilih Negara.
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="cadangan" required>
-                                <label for="floatingInput">Banyak Cadangan</label>
+                                <select class="form-select" name="kerusakan_lingkungan" aria-label="Default select example" required>
+                                    <option value="" selected disabled hidden>Kerusakan Lingkungan</option>
+                                    <option value="Sangat Tinggi">Sangat Tinggi</option>
+                                    <option value="Tinggi">Tinggi</option>
+                                    <option value="Sedang">Sedang</option>
+                                    <option value="Rendah">Rendah</option>
+                                    <option value="Sangat Rendah">Sangat Rendah</option>
+                                </select>
+                                <label for="floatingInput">Kerusakan Lingkungan</label>
                                 <div class="invalid-feedback">
-                                    Masukan Banyak Cadangan.
+                                    Pilih Kerusakan Lingkungan.
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Your Name" name="konsumsi" required>
-                                <label for="floatingInput">Banyak Konsumsi</label>
+                                <input type="number" name="penggusuran_penduduk" class="form-control" id="floatingInput" placeholder="Your Name" required>
+                                <label for="floatingInput">Penggusuran Penduduk</label>
                                 <div class="invalid-feedback">
-                                    Masukan Banyak Konsumsi.
+                                    Masukan Penggusuran Penduduk.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" name="konflik_sosial" aria-label="Default select example" required>
+                                    <option value="" selected disabled hidden>Konflik Sosial</option>
+                                    <option value="Ya">Ya</option>
+                                    <option value="Tidak">Tidak</option>
+                                </select>
+                                <label for="floatingInput">Konflik Sosial</label>
+                                <div class="invalid-feedback">
+                                    Pilih Konflik Sosial.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="form-floating mb-3">
+                                <input type="number" name="tingkat_kemiskinan" class="form-control" id="floatingInput" placeholder="Your Name" required>
+                                <label for="floatingInput">Tingkat Kemiskinan</label>
+                                <div class="invalid-feedback">
+                                    Masukan Tingkat Kemiskinan.
                                 </div>
                             </div>
                         </div>
@@ -74,65 +102,82 @@ if (empty($krisis)) {
 ?>
 
         <!-- Modal Edit Sumber-->
-        <div class="modal fade" id="EditSumber<?= $row['id_sumber_energi']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="EditSumber<?= $row['id_sosial']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-md modal-dialog-centered modal-fullscreen-sm-down">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Sumber Energi</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Dampak Sosial Lingkungan</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="needs-validation" novalidate action="proses_edit_sumber.php" method="POST">
-                            <input type="hidden" name="id_sumber_energi" value="<?= $row['id_sumber_energi']; ?>">
+                        <form class="needs-validation" novalidate action="controller/proses_edit_sumber.php" method="POST">
+                            <input type="hidden" name="id_sosial" value="<?= $row['id_sosial']; ?>">
+                            <input type="hidden" name="nmnegara" value="<?= $row['negara']; ?>">
                             <div class="form-floating mb-3">
-                                <input type="text" name="sumber_energi" class="form-control" id="floatingInput" value="<?= $row['nama_sumber_energi']; ?>">
-                                <label for="floatingInput">Sumber Energi</label>
-                                <div class="invalid-feedback">
-                                    Masukan Sumber Energi.
-                                </div>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <select class="form-select" name="jenis_sumber" aria-label="Default select example">
-                                    <option value="" hidden selected>Pilih Jenis Sumber Energi</option>
+                                <select class="form-select" name="id" aria-label="Default select example" required>
+                                    <option value="" hidden selected>Pilih Negara</option>
                                     <?php
-                                    if ($row['jenis_sumber_energi'] == 'Fosil') {
-                                        echo '<option value="Fosil" selected>Fosil</option>';
-                                        echo '<option value="Terbarukan">Terbarukan</option>';
-                                        echo '<option value="Non-Terbarukan">Non-Terbarukan</option>';
-                                    } else if ($row['jenis_sumber_energi'] == 'Terbarukan') {
-                                        echo '<option value="Fosil">Fosil</option>';
-                                        echo '<option value="Terbarukan" selected>Terbarukan</option>';
-                                        echo '<option value="Non-Terbarukan">Non-Terbarukan</option>';
-                                    } else if ($row['jenis_sumber_energi'] == 'Non-Terbarukan') {
-                                        echo '<option value="Fosil">Fosil</option>';
-                                        echo '<option value="Terbarukan">Terbarukan</option>';
-                                        echo '<option value="Non-Terbarukan" selected>Non-Terbarukan</option>';
+                                    foreach ($queryNegara as $value) {
+                                        if ($row['id'] == $value['id']) {
+                                            echo '<option value="' . $value['id'] . '" selected>' . $value['negara'] . '</option>';
+                                        } else {
+                                            echo '<option value="' . $value['id'] . '">' . $value['negara'] . '</option>';
+                                        }
                                     }
                                     ?>
                                 </select>
-                                <label for="floatingInput">Jenis Sumber Energi</label>
+                                <label for="floatingInput">Negara</label>
                                 <div class="invalid-feedback">
-                                    Masukan Jenis Sumber Energi.
+                                    Pilih Negara.
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floatingInput" value="<?= $row['cadangan']; ?>" name="cadangan">
-                                        <label for="floatingInput">Banyak Cadangan</label>
+                                        <select class="form-select" name="kerusakan_lingkungan" aria-label="Default select example" required>
+                                            <option selected disabled hidden>Pilih Kerusakan Lingkungan</option>
+                                            <option value="Sangat Tinggi" <?= ($row['kerusakan_lingkungan'] == 'Sangat Tinggi') ? 'selected' : ''; ?>>Sangat Tinggi</option>
+                                            <option value="Tinggi" <?= ($row['kerusakan_lingkungan'] == 'Tinggi') ? 'selected' : ''; ?>>Tinggi</option>
+                                            <option value="Sedang" <?= ($row['kerusakan_lingkungan'] == 'Sedang') ? 'selected' : ''; ?>>Sedang</option>
+                                            <option value="Rendah" <?= ($row['kerusakan_lingkungan'] == 'Rendah') ? 'selected' : ''; ?>>Rendah</option>
+                                            <option value="Sangat Rendah" <?= ($row['kerusakan_lingkungan'] == 'Sangat Rendah') ? 'selected' : ''; ?>>Sangat Rendah</option>
+                                        </select>
+                                        <label for="floatingInput">Kerusakan Lingkungan</label>
                                         <div class="invalid-feedback">
-                                            Masukan Banyak Cadangan.
+                                            Pilih Kerusakan Lingkungan.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm">
-                                    <div class="col-sm">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="floatingInput" value="<?= $row['konsumsi']; ?>" name="konsumsi">
-                                            <label for="floatingInput">Banyak Cadangan</label>
-                                            <div class="invalid-feedback">
-                                                Masukan Banyak Cadangan.
-                                            </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="number" name="penggusuran_penduduk" class="form-control" id="floatingInput" placeholder="Your Name" value="<?= $row['penggusuran_penduduk']; ?>" required>
+                                        <label for="floatingInput">Penggusuran Penduduk</label>
+                                        <div class="invalid-feedback">
+                                            Masukan Penggusuran Penduduk.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" name="konflik_sosial" aria-label="Default select example" required>
+                                            <option selected disabled hidden>Konflik Sosial</option>
+                                            <option value="Ya" <?= ($row['konflik_sosial'] == 'Ya') ? 'selected' : ''; ?>>Ya</option>
+                                            <option value="Tidak" <?= ($row['konflik_sosial'] == 'Tidak') ? 'selected' : ''; ?>>Tidak</option>
+                                        </select>
+                                        <label for="floatingInput">Konflik Sosial</label>
+                                        <div class="invalid-feedback">
+                                            Pilih Konflik Sosial.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-floating mb-3">
+                                        <input type="number" name="tingkat_kemiskinan" class="form-control" id="floatingInput" placeholder="Your Name" value="<?= $row['tingkat_kemiskinan']; ?>" required>
+                                        <label for="floatingInput">Tingkat Kemiskinan</label>
+                                        <div class="invalid-feedback">
+                                            Masukan Tingkat Kemiskinan.
                                         </div>
                                     </div>
                                 </div>
@@ -149,7 +194,7 @@ if (empty($krisis)) {
         <!-- End Modal Edit sumber -->
 
         <!-- Modal Delete Warga-->
-        <div class="modal fade" id="DeleteSumber<?= $row['id_sumber_energi']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="DeleteSumber<?= $row['id_sosial']; ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -157,11 +202,13 @@ if (empty($krisis)) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="needs-validation" novalidate action="proses_delete_sumber.php" method="POST">
-                            <input type="hidden" name="id_sumber_energi" value="<?= $row['id_sumber_energi']; ?>">
-                            <input type="hidden" name="sumber_energi" value="<?= $row['nama_sumber_energi']; ?>">
+                        <form class="needs-validation" novalidate action="controller/proses_delete_sumber.php" method="POST">
+                            <input type="hidden" name="id_sosial" value="<?= $row['id_sosial']; ?>">
+                            <input type="hidden" name="nmnegara" value="<?= $row['negara']; ?>">
+                            <input type="hidden" name="kerusakan_lingkungan" value="<?= $row['kerusakan_lingkungan']; ?>">
+                            <input type="hidden" name="tingkat_kemiskinan" value="<?= $row['tingkat_kemiskinan']; ?>">
                             <div class="col-lg-12 mb-3">
-                                <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus Data Sumber Energi <b><?= $row['nama_sumber_energi']; ?></b> ?</div>
+                                <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus Data Sumber Energi <b><?= $row['negara']; ?></b> ?</div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -182,11 +229,12 @@ if (empty($krisis)) {
             <thead class="align-middle">
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col" class="text-nowrap">Sumber Energi</th>
-                    <th scope="col" class="text-nowrap">Jenis Sumber Energi</th>
-                    <th scope="col">Cadangan</th>
-                    <th scope="col">Konsumsi</th>
-                    <th scope="col">Aksi</th>
+                    <th scope="col" class="text-nowrap">Negara</th>
+                    <th scope="col" class="text-nowrap"> Kerusakan Lingkungan</th>
+                    <th scope="col" class="text-nowrap"> Penggusuran Penduduk</th>
+                    <th scope="col" class="text-nowrap"> Konflik Sosial</th>
+                    <th scope="col" class="text-nowrap"> Tingkat Kemiskinan</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -196,24 +244,19 @@ if (empty($krisis)) {
                 ?>
                     <tr>
                         <th scope="row"><?= $no++ ?></th>
-                        <td><?= $row['nama_sumber_energi'] ?></td>
-                        <td><?= $row['jenis_sumber_energi'] ?></td>
-                        <td>
-                            <?php if ($row['cadangan'] == 0) {
-                                echo "Tidak Terbatas";
-                            } else {
-                                echo number_format($row['cadangan'], 0, ',', '.');
-                            } ?>
-                        </td>
-                        <td><?= number_format($row['konsumsi'], 0, ',', '.') ?></td>
+                        <td><?= $row['negara'] ?></td>
+                        <td><?= $row['kerusakan_lingkungan'] ?></td>
+                        <td><?= number_format($row['penggusuran_penduduk'], 0, ',', '.') ?></td>
+                        <td><?= $row['konflik_sosial'] ?></td>
+                        <td><?= number_format($row['tingkat_kemiskinan'], 0, ',', '.') ?></td>
                         <td>
                             <div class="btn-group">
                                 <a href"#" class="btn btn-primary btn-sm rounded" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi bi-three-dots-vertical"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#EditSumber<?php echo $row['id_sumber_energi']; ?>"><i class="bi bi-pencil-square text-warning"></i> Edit</a></li>
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#DeleteSumber<?php echo $row['id_sumber_energi']; ?>"><i class="bi bi-trash3 text-danger"></i> Delete</a></li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#EditSumber<?php echo $row['id_sosial']; ?>"><i class="bi bi-pencil-square text-warning"></i> Edit</a></li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#DeleteSumber<?php echo $row['id_sosial']; ?>"><i class="bi bi-trash3 text-danger"></i> Delete</a></li>
                                 </ul>
                             </div>
                         </td>
