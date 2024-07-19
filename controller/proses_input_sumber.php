@@ -20,7 +20,7 @@ if (!empty(isset($_POST['input_warga_validate']))) {
         $massage = '
         <script>
         window.location = "../SosialLingkungan";
-        alert("Data Sosial Lingkungan Negara ' . $negara . ' dengan Tingkat Kemiskinan ' . $tingkat_kemiskinan . ' dan Penggusuran penduduk ' . $penggusuran_penduduk . ' sudah terdaftar");
+        alert("Data Sosial Lingkungan Negara ' . $negara . ' dengan Penggusuran penduduk ' . $penggusuran_penduduk . ' dan Tingkat kemiskinan ' . $tingkat_kemiskinan . ' sudah terdaftar");
         </script>
         ';
     } else {
@@ -29,14 +29,14 @@ if (!empty(isset($_POST['input_warga_validate']))) {
             $massage = '
         <script>
         window.location = "../SosialLingkungan";
-        alert("Berhasil Menambahkan Data Sosial Lingkungan Negara ' . $negara . ' dengan Tingkat kemiskinan ' . $tingkat_kemiskinan . ' dan Penggusuran penduduk ' . $penggusuran_penduduk . '");
+        alert("Berhasil Menambahkan Data Sosial Lingkungan Negara ' . $negara . ' dengan Penggusuran penduduk ' . $penggusuran_penduduk . ' dan Tingkat kemiskinan ' . $tingkat_kemiskinan . '");
         </script>
         ';
         } else {
             $massage = '
         <script>
         window.location = "../SosialLingkungan";
-        alert("Gagal insert data");
+        alert("Gagal menambah data");
         </script>
         ';
         }

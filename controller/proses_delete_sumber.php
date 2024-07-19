@@ -12,7 +12,7 @@ if (!empty(isset($_POST['input_sumber_validate']))) {
         $massage = '
         <script>
         window.location = "../SosialLingkungan"; 
-        alert("Data Dampak Sosial Lingkungan Negara ' . $nmnegara . ' dengan Tingkat Kemiskinan ' . $tingkat_kemiskinan . ' dan Kerusakan Lingkungan ' . $kerusakan_lingkungan . ' Berhasil Dihapus");
+        alert("Data Dampak Sosial Lingkungan Negara ' . $nmnegara . ' dengan Penggusuran penduduk ' . $penggusuran_penduduk . ' dan Tingkat kemiskinan ' . $tingkat_kemiskinan . ' Berhasil Dihapus");
         </script>
         ';
     } else {

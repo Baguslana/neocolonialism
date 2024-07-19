@@ -21,7 +21,7 @@ if (!empty(isset($_POST['input_dampak_validate']))) {
         $message = '
         <script>
         window.location = "../Ekonomi";
-        alert("Data Ekonomi Negara ' . $negara . ' dengan GDP %' . $persentase_gdp . ' sudah terdaftar");
+        alert("Data Dampak Ekonomi Negara ' . $negara . ' sudah terdaftar");
         </script>
         ';
     } else {
@@ -30,14 +30,14 @@ if (!empty(isset($_POST['input_dampak_validate']))) {
             $message = '
         <script>
         window.location = "../Ekonomi";
-        alert("Berhasil Menambahkan Data Ekonomi Negara ' . $negara . ' dengan GDP %' . $persentase_gdp . '");
+        alert("Berhasil Menambahkan Data Dampak Ekonomi Negara ' . $negara . '");
         </script>
         ';
         } else {
             $message = '
         <script>
         window.location = "../Ekonomi";
-        alert("Gagal insert data");
+        alert("Gagal menambahkan data");
         </script>
         ';
         }

@@ -15,13 +15,13 @@ if (!empty(isset($_POST['input_dampak_validate']))) {
         $massage = '
         <script>
         window.location = "../Ekonomi"; 
-        alert("Data Dampak Ekonomi Negara ' . $nmnegara . ' dengan GDP %' . $persentase_gdp . ' Berhasil Diedit");
+        alert("Data Dampak Ekonomi Negara ' . $nmnegara . '  Berhasil Diedit");
         </script>';
     } else {
         $massage = '
         <script>
         window.location = "../Ekonomi";
-        alert("Data Dampak Krisis Energi ' . $nmnegara . ' dengan GDP %' . $persentase_gdp . ' Gagal Diedit");
+        alert("Data Dampak Ekonomi Negara ' . $nmnegara . '  Gagal Diedit");
         </scrip>
         ';
     }

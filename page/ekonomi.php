@@ -193,8 +193,6 @@ if (empty($krisis)) {
                         <form class="needs-validation" novalidate action="controller/proses_delete_dampak.php" method="POST">
                             <input type="hidden" name="id_ekonomi" value="<?= $row['id_ekonomi']; ?>">
                             <input type="hidden" name="nmnegara" value="<?= $row['negara']; ?>">
-                            <input type="hidden" name="penggusuran_penduduk" value="<?= $row['penggusuran_penduduk']; ?>">
-                            <input type="hidden" name="tingkat_kemiskinan" value="<?= $row['tingkat_kemiskinan']; ?>">
                             <div class="col-lg-12 mb-3">
                                 <div class="alert alert-light" role="alert">Apakah anda yakin ingin menghapus Data Sosial Lingkungan <b><?= $row['negara']; ?></b> ?</div>
                             </div>

@@ -28,7 +28,7 @@ if (!empty(isset($_POST['input_krisis_validate']))) {
             $message = '
         <script>
         window.location = "../SumberDaya";
-        alert("Gagal insert data");
+        alert("Gagal menambahkan data");
         </script>
         ';
         }
