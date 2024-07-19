@@ -107,7 +107,7 @@ if (empty($krisis)) {
                     <div class="modal-body">
                         <form class="needs-validation" novalidate action="controller/proses_edit_dampak.php" method="POST">
                             <input type="hidden" name="id_ekonomi" value="<?= $row['id_ekonomi']; ?>">
-                            <input type="hidden" name="nmnegara" value="<?= $row['negara']; ?>">
+                            <input type="hidden" name="nmnegara" value="<?= $row['negara']; ?>">asd
                             <div class="form-floating mb-3">
                                 <select class="form-select" name="id" aria-label="Default select example" required>
                                     <option value="" hidden selected>Pilih Negara</option>
