@@ -1,3 +1,6 @@
+---
+
+```markdown
 # Neocolonialism Project
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -114,6 +117,11 @@ Kontribusi selalu diterima! Jika Anda ingin berkontribusi:
 ## 📄 Lisensi
 
 Proyek ini dilisensikan di bawah **Lisensi MIT**. Lihat file [LICENSE](https://www.google.com/search?q=LICENSE) untuk informasi lebih lanjut.
+
+---
+
+Dikembangkan dengan ❤️ oleh [Baguslana](https://www.google.com/search?q=https://github.com/Baguslana)
+
 ```
 
 ```
